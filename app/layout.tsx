@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Poppins({
   subsets: ["latin"],
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   title: "Evently",
   description: "Evently is a platform for hosting and attending events.",
   icons: {
-    icon: "/assests/images/logo.svg",
+    icon: "/favicon.ico",
   },
 };
 
@@ -22,8 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>{children}</body>
+      </html>
+    </ClerkProvider>
   );
 }
